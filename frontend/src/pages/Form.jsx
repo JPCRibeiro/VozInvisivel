@@ -2,10 +2,10 @@ import { InputCheckbox, InputText, Select, TextArea } from "../components/form/I
 import axios from "axios";
 import { useEffect, useState } from "react";
 import * as Yup from "yup";
-import SuccessMessage from "../components/form/SuccessMessage.jsx";
 import MultiCheckbox from "../components/form/MultiCheckbox.jsx";
 import Loader from "../components/Loader.jsx";
 import LocationSelect from "../components/form/LocationSelect.jsx";
+import SuccessMessage from "../components/form/successMessage.jsx";
 
 export default function FormPage() {
   const [isLoading, setIsLoading] = useState(false);
