@@ -1,39 +1,38 @@
 import { useState, useCallback, useEffect } from "react";
+import axios from "axios";
 import DenunciaContext from "./DenunciaContext";
 
 export const DenunciaProvider = ({ children }) => {
-  // Verifica se está no cliente antes de acessar o localStorage
   const [denunciaCache, setDenunciaCache] = useState({});
-  const [denunciasCache, setDenunciasCache] = useState(null);
+  const [denunciasCache, setDenunciasCache] = useState([]); // Valor inicial é um array vazio
+  const [isLoading, setIsLoading] = useState(true);
 
+  // Busca as denúncias no carregamento inicial
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const savedDenuncia = localStorage.getItem("denunciaCache");
-      const savedDenuncias = localStorage.getItem("denunciasCache");
-      setDenunciaCache(savedDenuncia ? JSON.parse(savedDenuncia) : {});
-      setDenunciasCache(savedDenuncias ? JSON.parse(savedDenuncias) : null);
-    }
+    const fetchDenuncias = async () => {
+      try {
+        const response = await axios.get("/api/denuncias");
+        setDenunciasCache(Array.isArray(response.data) ? response.data : []); // Garante que seja um array
+      } catch (error) {
+        console.error("Erro ao buscar denúncias:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchDenuncias();
   }, []);
 
   const salvarDenuncia = useCallback((id, data) => {
-    if (typeof window !== "undefined") {
-      setDenunciaCache((prev) => {
-        const newCache = { ...prev, [id]: data };
-        localStorage.setItem("denunciaCache", JSON.stringify(newCache));
-        return newCache;
-      });
-    }
+    setDenunciaCache((prev) => ({ ...prev, [id]: data }));
   }, []);
 
   const salvarDenuncias = useCallback((data) => {
-    if (typeof window !== "undefined") {
-      setDenunciasCache(data);
-      localStorage.setItem("denunciasCache", JSON.stringify(data));
-    }
+    setDenunciasCache(Array.isArray(data) ? data : []); // Garante que seja um array
   }, []);
 
   return (
-    <DenunciaContext.Provider value={{ denunciaCache, salvarDenuncia, denunciasCache, salvarDenuncias }}>
+    <DenunciaContext.Provider value={{ denunciaCache, salvarDenuncia, denunciasCache, salvarDenuncias, isLoading }}>
       {children}
     </DenunciaContext.Provider>
   );

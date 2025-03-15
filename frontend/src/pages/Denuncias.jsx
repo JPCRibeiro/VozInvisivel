@@ -1,56 +1,22 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Loader from "../components/Loader";
 import { useDenuncia } from "../hooks/useDenuncia.jsx";
 
 export default function DenunciasPage() {
-  const { denunciasCache, salvarDenuncias } = useDenuncia();
-  const [denuncias, setDenuncias] = useState(denunciasCache || []);
-  const [isLoading, setIsLoading] = useState(!denunciasCache); 
-
-  useEffect(() => {
-    let timeoutId;
-  
-    const fetchDenuncias = async () => {
-      if (denunciasCache && denunciasCache.length > 0) {
-        setIsLoading(false);
-        return;
-      }
-  
-      try {
-        const response = await axios.get("/api/denuncias");
-        console.log("Resposta da API:", response.data);
-        setDenuncias(Array.isArray(response.data) ? response.data : []);
-        salvarDenuncias(response.data);
-      } catch (error) {
-        console.error("Erro ao buscar denúncias:", error);
-        console.log("Resposta da API:", error.data);
-      } finally {
-        timeoutId = setTimeout(() => {
-          setIsLoading(false);
-        }, 1000);
-      }
-    };
-  
-    fetchDenuncias();
-  
-    return () => {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
-    };
-  }, [denunciasCache, salvarDenuncias]);
+  const { denunciasCache, isLoading } = useDenuncia();
 
   useEffect(() => {
     document.title = "Voz Invisível - Denúncias";
   }, []);
 
+  // Exibe "Carregando" apenas se os dados ainda não foram carregados
   if (isLoading) {
-    return (
-      <Loader text="Carregando"/>
-    );
+    return <Loader text="Carregando" />;
   }
+
+  // Verifica se denunciasCache é um array antes de usar .map()
+  const denuncias = Array.isArray(denunciasCache) ? denunciasCache : [];
 
   return (
     <section>
