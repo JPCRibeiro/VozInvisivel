@@ -1,11 +1,11 @@
-import { InputCheckbox, InputText, Select, TextArea } from "../components/form/Inputs";
+import { InputCheckbox, InputText, Select, TextArea } from "../components/form/Inputs.jsx";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import * as yup from "yup";
-import SuccessMessage from "../components/form/SubmittedFormScreen";
-import LocationSelect from "../components/form/locationSelect";
-import MultiCheckbox from "../components/form/MultiCheckbox";
-import Loader from "../components/Loader";
+import SuccessMessage from "../components/form/SuccessMessage.jsx";
+import MultiCheckbox from "../components/form/MultiCheckbox.jsx";
+import Loader from "../components/Loader.jsx";
+import LocationSelect from "../components/form/LocationSelect.jsx";
 
 export default function FormPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -42,7 +42,7 @@ export default function FormPage() {
 
     try {
       await validationSchema.validate(formData, { abortEarly: false });
-      await axios.post("http://voz-invisivel.sa-east-1.elasticbeanstalk.com/denuncias", formData);
+      await axios.post("/denuncias", formData);
 
       window.scrollTo({ top: 0 });
       setIsLoading(true);

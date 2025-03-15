@@ -1,5 +1,5 @@
-import ErrorMessage from "./ErrorMessage";
-import { InputCheckbox } from "./Inputs";
+import ErrorMessage from "./ErrorMessage.jsx";
+import { InputCheckbox } from "./Inputs.jsx";
 
 export default function MultiCheckbox({ setFormData, setErrors, errors }) {
   return (

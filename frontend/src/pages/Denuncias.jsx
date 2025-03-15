@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import Loader from "../components/Loader";
+import Loader from "../components/Loader.jsx";
 import { useDenuncia } from "../hooks/useDenuncia.jsx";
 
 export default function DenunciasPage() {
@@ -11,14 +11,16 @@ export default function DenunciasPage() {
 
   useEffect(() => {
     let timeoutId;
-
+    
     const fetchDenuncias = async () => {
       try {
-        const response = await axios.get("http://voz-invisivel.sa-east-1.elasticbeanstalk.com/denuncias");
-        setDenuncias(response.data);
+        const response = await axios.get("/denuncias");
+        console.log("Resposta da API:", response.data);
+        setDenuncias(Array.isArray(response.data) ? response.data : []);
         salvarDenuncias(response.data);
       } catch (error) {
         console.error("Erro ao buscar denúncias:", error);
+        console.log("Resposta da API:", error.data);
       } finally {
         timeoutId = setTimeout(() => {
           setIsLoading(false);

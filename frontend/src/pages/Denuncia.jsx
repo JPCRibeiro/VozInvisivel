@@ -15,7 +15,7 @@ export default function DenunciaPage() {
 
     const fetchDenuncia = async () => {
       try {
-        const response = await axios.get(`http://voz-invisivel.sa-east-1.elasticbeanstalk.com/denuncias/${id}`);
+        const response = await axios.get(`/denuncias/${id}`);
         setDenuncia(response.data);
         salvarDenuncia(id, response.data);
       } catch (error) {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Accordion from "../components/Accordion";
+import Accordion from "../components/Accordion.jsx";
 import discUrl from "../assets/disc.jpg";
 import heroUrl from "../assets/hero-img.jpg";
 import logoUrl from "../assets/logo.png";

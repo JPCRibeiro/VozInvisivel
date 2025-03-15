@@ -1,5 +1,5 @@
 import { useState } from "react";
-import DenunciaContext from "./DenunciaContext";
+import DenunciaContext from "./DenunciaContext.jsx";
 
 export const DenunciaProvider = ({ children }) => {
   const [denunciaCache, setDenunciaCache] = useState(() => {

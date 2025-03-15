@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Select } from "./Inputs";
+import { Select } from "./Inputs.jsx";
 
 export default function LocationSelect({ setFormData, setErrors, errors }) {
   const [estados, setEstados] = useState([]);

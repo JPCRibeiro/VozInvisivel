@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { ScrollRestoration } from "react-router-dom";
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "./Header.jsx";
+import Footer from "./Footer.jsx";
 import { DenunciaProvider } from "../context/DenunciaProvider.jsx";
 
 export default function Layout() {

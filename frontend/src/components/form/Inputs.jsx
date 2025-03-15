@@ -1,4 +1,4 @@
-import ErrorMessage from "./ErrorMessage";
+import ErrorMessage from "./ErrorMessage.jsx";
 
 export function InputText({ id, type, label, placeholder, setFormData, setErrors, error }) {
   const handleChange = (e) => {
@@ -180,47 +180,3 @@ export function Select({ id, label, hiddenOption, options, setFormData, setError
     )
   );
 }
-
-/*
-const handleInputChange = useCallback((e) => {
-    if (type === "checkbox") {
-      if (Array.isArray(value)) {
-        const newValue = e.target.checked ? [...value, e.target.value] : value.filter((item) => item !== e.target.value);
-        onChange(newValue);
-      } else {
-        onChange(e.target.checked);
-      }
-    } else {
-      onChange(e.target.value);
-    }
-  }, [value, onChange, type]);
-
-  return (
-    type === "checkbox" ? (
-      <div className="flex gap-2 items-center">
-        <input 
-          id={id}
-          type={type}
-          value={id}
-          checked={Array.isArray(value) ? value.includes(id) : value}
-          onChange={handleInputChange}
-          className="accent-[#AF2527] scale-105 cursor-pointer"
-        />
-        <label htmlFor={id} className="text-[17px] cursor-pointer select-none">{label}</label>
-      </div>
-    ) : (
-      <div className="flex flex-col gap-2">
-        <label htmlFor={id} className={`text-[18px] text-[#383737] font-[600] text-center ${error && 'text-[#AF2527]'}`}>{label}</label>
-        <input 
-          id={id}
-          type={type}
-          placeholder={placeholder}
-          value={value}
-          onChange={handleInputChange}
-          className={`${error && '!border-[#AF2527]'}`}
-        />
-        {error && <p className="text-[#AF2527] text-[16px] font-[500]">{error}</p>}
-      </div>
-    )
-  )
-*/
