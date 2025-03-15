@@ -1,7 +1,7 @@
 import { InputCheckbox, InputText, Select, TextArea } from "../components/form/Inputs.jsx";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import * as yup from "yup";
+import * as Yup from "yup";
 import SuccessMessage from "../components/form/SuccessMessage.jsx";
 import MultiCheckbox from "../components/form/MultiCheckbox.jsx";
 import Loader from "../components/Loader.jsx";
@@ -24,17 +24,17 @@ export default function FormPage() {
     consentimento: false,
   });
 
-  const validationSchema = yup.object().shape({
-    empresa: yup.string().required("Informe o nome da empresa").trim(),
-    estado: yup.string().min(1, "Selecione um campo"),
-    cidade: yup.string().min(1, "Selecione um campo"),
-    setor: yup.string().required("Informe o setor"),
-    discriminacao: yup.array().min(1, "Selecione pelo menos um campo"),
-    data: yup.string().required("Informe a data do ocorrido"),
-    envolvimento: yup.string().oneOf(["Vítima", "Testemunha"], "Selecione um campo"),
-    detalhes: yup.string().required("Descreva o ocorrido"),
-    tentativa: yup.string().oneOf(["Não", "Sim"], "Selecione um campo"),
-    consentimento: yup.boolean().oneOf([true], "Aceite os termos para prosseguir").default(false),
+  const validationSchema = Yup.object().shape({
+    empresa: Yup.string().required("Informe o nome da empresa").trim(),
+    estado: Yup.string().min(1, "Selecione um campo"),
+    cidade: Yup.string().min(1, "Selecione um campo"),
+    setor: Yup.string().required("Informe o setor"),
+    discriminacao: Yup.array().min(1, "Selecione pelo menos um campo"),
+    data: Yup.string().required("Informe a data do ocorrido"),
+    envolvimento: Yup.string().oneOf(["Vítima", "Testemunha"], "Selecione um campo"),
+    detalhes: Yup.string().required("Descreva o ocorrido"),
+    tentativa: Yup.string().oneOf(["Não", "Sim"], "Selecione um campo"),
+    consentimento: Yup.boolean().oneOf([true], "Aceite os termos para prosseguir").default(false),
   });
 
   const handleSubmit = async (e) => {
