@@ -8,7 +8,7 @@ export default function DenunciasPage() {
       <h3>Denúncias</h3>
       {error ? (
         <div className="min-h-[300px] flex justify-center items-center">
-          <p className="text-gray-500 text-center text-[18px]">Denúncia não encontrada.</p>
+          <p className="text-gray-500 text-center text-[18px]">{error}</p>
         </div>
       ) : (
         <div className="topic-container">
