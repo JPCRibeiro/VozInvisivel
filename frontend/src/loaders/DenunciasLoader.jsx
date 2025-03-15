@@ -2,7 +2,7 @@ import axios from "axios";
 
 export async function DenunciasLoader() {
   try {
-    const response = await axios.get(`http://localhost:3000/api/denuncias`);
+    const response = await axios.get(`/api/denuncias`);
     return {
       denuncias: response.data,
       error: null 

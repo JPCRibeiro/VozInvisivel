@@ -16,8 +16,7 @@ const router = createBrowserRouter([
       { path: "/", element: <HomePage/> },
       { path: "/denunciar", element: <FormPage/> },
       { path: "/denuncias", element: <DenunciasPage/>, loader: DenunciasLoader },
-      { path: "/denuncias/:id", element: <DenunciaPage/>, loader: DenunciaLoader },
-      { path: "*", element: <NotFoundPage/> },
+      { path: "/denuncias/:id", element: <DenunciaPage/>, loader: DenunciaLoader }
     ],
   },
 ]);
