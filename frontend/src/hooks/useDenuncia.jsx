@@ -1,4 +1,4 @@
 import { useContext } from "react";
-import DenunciaContext from "../context/DenunciaContext.jsx";
+import DenunciaContext from "../context/DenunciaContext";
 
 export const useDenuncia = () => useContext(DenunciaContext);

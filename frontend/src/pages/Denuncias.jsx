@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import Loader from "../components/Loader.jsx";
+import Loader from "../components/Loader";
 import { useDenuncia } from "../hooks/useDenuncia.jsx";
 
 export default function DenunciasPage() {
@@ -11,8 +11,13 @@ export default function DenunciasPage() {
 
   useEffect(() => {
     let timeoutId;
-    
+  
     const fetchDenuncias = async () => {
+      if (denunciasCache && denunciasCache.length > 0) {
+        setIsLoading(false);
+        return;
+      }
+  
       try {
         const response = await axios.get("/api/denuncias");
         console.log("Resposta da API:", response.data);
@@ -27,9 +32,9 @@ export default function DenunciasPage() {
         }, 1000);
       }
     };
-
+  
     fetchDenuncias();
-
+  
     return () => {
       if (timeoutId) {
         clearTimeout(timeoutId);
@@ -64,7 +69,9 @@ export default function DenunciasPage() {
             ))}
           </ul>
         ) : (
-          <p className="text-gray-500 text-center">Nenhuma denúncia encontrada.</p>
+          <div className="min-h-[300px] flex justify-center items-center">
+            <p className="text-gray-500 text-center text-[18px]">Nenhuma denúncia encontrada.</p>
+          </div>
         )}
       </div>
     </section>

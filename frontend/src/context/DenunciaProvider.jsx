@@ -1,5 +1,5 @@
-import { useState } from "react";
-import DenunciaContext from "./DenunciaContext.jsx";
+import { useState, useCallback } from "react"; // Importe useCallback
+import DenunciaContext from "./DenunciaContext";
 
 export const DenunciaProvider = ({ children }) => {
   const [denunciaCache, setDenunciaCache] = useState(() => {
@@ -11,18 +11,18 @@ export const DenunciaProvider = ({ children }) => {
     return savedDenuncias ? JSON.parse(savedDenuncias) : null;
   });
 
-  const salvarDenuncia = (id, data) => {
+  const salvarDenuncia = useCallback((id, data) => {
     setDenunciaCache((prev) => {
       const newCache = { ...prev, [id]: data };
       localStorage.setItem("denunciaCache", JSON.stringify(newCache));
       return newCache;
     });
-  };
+  }, []); // Nenhuma dependência, a função é estável
 
-  const salvarDenuncias = (data) => {
+  const salvarDenuncias = useCallback((data) => {
     setDenunciasCache(data);
     localStorage.setItem("denunciasCache", JSON.stringify(data));
-  };
+  }, []); // Nenhuma dependência, a função é estável
 
   return (
     <DenunciaContext.Provider value={{ denunciaCache, salvarDenuncia, denunciasCache, salvarDenuncias }}>

@@ -12,23 +12,29 @@ export default function DenunciaPage() {
 
   useEffect(() => {
     let timeoutId;
-
+  
     const fetchDenuncia = async () => {
       try {
         const response = await axios.get(`/api/denuncias/${id}`);
-        setDenuncia(response.data);
-        salvarDenuncia(id, response.data);
+        
+        if (response.headers["content-type"].includes("application/json")) {
+          setDenuncia(response.data);
+          salvarDenuncia(id, response.data);
+        } else {
+          setDenuncia(null); 
+        }
       } catch (error) {
         console.error("Erro ao buscar denúncia:", error);
+        setDenuncia(null); 
       } finally {
         timeoutId = setTimeout(() => {
           setIsLoading(false);
         }, 1000);
       }
     };
-
+  
     fetchDenuncia();
-
+  
     return () => {
       if (timeoutId) {
         clearTimeout(timeoutId);
@@ -46,8 +52,8 @@ export default function DenunciaPage() {
 
   if (!denuncia) {
     return (
-      <div className="flex justify-center items-center h-screen">
-        <p className="text-red-500">Denúncia não encontrada.</p>
+      <div className="min-h-[500px] flex justify-center items-center">
+        <p className="text-gray-500 text-center text-[18px]">Denúncia não encontrada.</p>
       </div>
     );
   }
@@ -85,7 +91,7 @@ export default function DenunciaPage() {
           </div>
           <div className="mt-5 px-6 py-4 bg-[#E5E7EB] rounded-lg flex flex-col gap-2">
             <p className="text-[18px] font-semibold">
-              Discriminação: {formatArray(denuncia.discriminacao)}
+              Discriminação: {Array.isArray(denuncia.discriminacao) ? formatArray(denuncia.discriminacao) : "Nenhuma discriminação registrada."}
             </p>
             <p>{denuncia.detalhes}</p>
           </div>
