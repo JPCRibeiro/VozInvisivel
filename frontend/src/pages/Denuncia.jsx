@@ -1,62 +1,7 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
-import { useDenuncia } from "../hooks/useDenuncia.jsx";
-import Loader from "../components/Loader.jsx";
+import { useLoaderData } from "react-router-dom";
 
 export default function DenunciaPage() {
-  const { id } = useParams();
-  const { denunciaCache, salvarDenuncia } = useDenuncia();
-  const [denuncia, setDenuncia] = useState(denunciaCache[id] || null);
-  const [isLoading, setIsLoading] = useState(!denunciaCache[id]);
-
-  useEffect(() => {
-    let timeoutId;
-  
-    const fetchDenuncia = async () => {
-      try {
-        const response = await axios.get(`/api/denuncias/${id}`);
-        
-        if (response.headers["content-type"].includes("application/json")) {
-          setDenuncia(response.data);
-          salvarDenuncia(id, response.data);
-        } else {
-          setDenuncia(null); 
-        }
-      } catch (error) {
-        console.error("Erro ao buscar denúncia:", error);
-        setDenuncia(null); 
-      } finally {
-        timeoutId = setTimeout(() => {
-          setIsLoading(false);
-        }, 1000);
-      }
-    };
-  
-    fetchDenuncia();
-  
-    return () => {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
-    };
-  }, [id, denunciaCache, salvarDenuncia]);
-
-  useEffect(() => {
-    document.title = "Voz Invisível - Denúncia";
-  }, []);
-
-  if (isLoading) {
-    return <Loader text="Carregando" />;
-  }
-
-  if (!denuncia) {
-    return (
-      <div className="min-h-[500px] flex justify-center items-center">
-        <p className="text-gray-500 text-center text-[18px]">Denúncia não encontrada.</p>
-      </div>
-    );
-  }
+  const { denuncia, error } = useLoaderData();
 
   const formatArray = (arr) => {
     if (arr.length === 1) return arr[0];
@@ -72,7 +17,12 @@ export default function DenunciaPage() {
   return (
     <section>
       <h3>Denúncia</h3>
-      <div className="topic-container">
+      {error ? (
+        <div className="min-h-[300px] flex justify-center items-center">
+          <p className="text-gray-500 text-center text-[18px]">Denúncia não encontrada.</p>
+        </div>
+      ) : (
+        <div className="topic-container">
         <div className="bg-white shadow-md rounded-lg !p-6 border border-gray-200">
           <h2 className="text-[24px] font-bold">{denuncia.empresa}</h2>
           <p className="text-[15px]">
@@ -97,6 +47,7 @@ export default function DenunciaPage() {
           </div>
         </div>
       </div>
+      )}
     </section>
   );
 }

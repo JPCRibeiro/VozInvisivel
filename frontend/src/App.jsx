@@ -5,6 +5,8 @@ import FormPage from "./pages/Form.jsx";
 import DenunciasPage from "./pages/Denuncias.jsx";
 import NotFoundPage from "./pages/NotFound.jsx";
 import DenunciaPage from "./pages/Denuncia.jsx";
+import { DenunciasLoader } from "./loaders/DenunciasLoader.jsx";
+import { DenunciaLoader } from "./loaders/DenunciaLoader.jsx";
 
 const router = createBrowserRouter([
   {
@@ -13,8 +15,8 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <HomePage/> },
       { path: "/denunciar", element: <FormPage/> },
-      { path: "/denuncias", element: <DenunciasPage/> },
-      { path: "/denuncias/:id", element: <DenunciaPage/> },
+      { path: "/denuncias", element: <DenunciasPage/>, loader: DenunciasLoader },
+      { path: "/denuncias/:id", element: <DenunciaPage/>, loader: DenunciaLoader },
       { path: "*", element: <NotFoundPage/> },
     ],
   },
