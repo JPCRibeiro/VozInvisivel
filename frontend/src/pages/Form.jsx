@@ -42,7 +42,7 @@ export default function FormPage() {
 
     try {
       await validationSchema.validate(formData, { abortEarly: false });
-      await axios.post("/denuncias", formData);
+      await axios.post("/api/denuncias", formData);
 
       window.scrollTo({ top: 0 });
       setIsLoading(true);

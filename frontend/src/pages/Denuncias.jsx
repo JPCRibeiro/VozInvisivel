@@ -14,7 +14,7 @@ export default function DenunciasPage() {
     
     const fetchDenuncias = async () => {
       try {
-        const response = await axios.get("/denuncias");
+        const response = await axios.get("/api/denuncias");
         console.log("Resposta da API:", response.data);
         setDenuncias(Array.isArray(response.data) ? response.data : []);
         salvarDenuncias(response.data);

@@ -15,7 +15,7 @@ export default function DenunciaPage() {
 
     const fetchDenuncia = async () => {
       try {
-        const response = await axios.get(`/denuncias/${id}`);
+        const response = await axios.get(`/api/denuncias/${id}`);
         setDenuncia(response.data);
         salvarDenuncia(id, response.data);
       } catch (error) {
