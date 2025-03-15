@@ -4,8 +4,8 @@ import DenunciasController from "../controllers/denunciasController.js";
 const router = express.Router();
 
 router
-  .get("/denuncias", DenunciasController.listarDenuncias)
-  .get("/denuncias/:id", DenunciasController.listarDenunciaPorId)
-  .post("/denuncias", DenunciasController.cadastrarDenuncia)
+  .get("/api/denuncias", DenunciasController.listarDenuncias)
+  .get("/api/denuncias/:id", DenunciasController.listarDenunciaPorId)
+  .post("/api/denuncias", DenunciasController.cadastrarDenuncia)
 
 export default router;
