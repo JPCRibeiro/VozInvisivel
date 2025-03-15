@@ -1,6 +1,6 @@
 {
   "rewrites": [
-    { "source": "/api/denuncias", "destination": "http://voz-invisivel.sa-east-1.elasticbeanstalk.com//api/denuncias" },
-    { "source": "/api/denuncias/(.*)", "destination": "http://voz-invisivel.sa-east-1.elasticbeanstalk.com//api/denuncias/$1" }
+    { "source": "/api/denuncias", "destination": "http://voz-invisivel.sa-east-1.elasticbeanstalk.com/api/denuncias" },
+    { "source": "/api/denuncias/(.*)", "destination": "http://voz-invisivel.sa-east-1.elasticbeanstalk.com/api/denuncias/$1" }
   ]
 }
