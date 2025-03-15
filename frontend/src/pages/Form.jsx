@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import * as Yup from "yup";
 import MultiCheckbox from "../components/form/MultiCheckbox.jsx";
 import Loader from "../components/Loader.jsx";
-import LocationSelect from "../components/form/LocationSelect.jsx";
 import SuccessMessage from "../components/form/successMessage.jsx";
+import LocationSelect from "../components/form/locationSelect.jsx";
 
 export default function FormPage() {
   const [isLoading, setIsLoading] = useState(false);
