@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/api/posts", "destination": "http://vividwalls-api.sa-east-1.elasticbeanstalk.com/api/posts" },
+    { "source": "/api/posts/(.*)", "destination": "http://vividwalls-api.sa-east-1.elasticbeanstalk.com/api/posts/$1" }
+  ]
+}

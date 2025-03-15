@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+html, body {
+  height: 100%;
+}
+
+body {
+  color: #383737;
+  font-family: "Poppins", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+section {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 30px 20px 50px;
+}
+
+img {
+  user-select: none;
+}
+
+footer {
+  margin-top: auto;
+}
+
+h3 {
+  font-size: 26px;
+  color: #383737;
+  font-weight: bold;
+  border-bottom: 2px solid #383737;
+  padding-bottom: 5px;
+  margin-bottom: 24px;
+}
+
+p {
+  line-height: 1.625;
+}
+
+input, select, textarea {
+  outline: none;
+  border: 2px solid #383737;
+  padding: 8px;
+}
+
+select {
+  max-width: 400px;
+}
+
+.form h4 {
+  font-size: 18px;
+  color: #383737;
+  font-weight: 600;
+  cursor: default;
+}
+
+.button {
+  padding: 8px 16px;
+  background-color: #AF2527;
+  color: white;
+  border-radius: 999px;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+}
+
+.topic-container {
+  display: flex;
+  flex-direction: column;
+  padding-inline: 16px;
+}
+
+.noticia {
+  text-decoration: underline;
+  font-size: 18px;
+  width: fit-content;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader span {
+  width: 7px;
+  height: 7px;
+  margin: 0 4px;
+  background-color: red;
+  border-radius: 50%;
+  animation: loadBounce 1s infinite;
+}
+
+.loader span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loader span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes loadBounce {
+  40% {
+    transform: translateY(-7px);
+  }
+}
