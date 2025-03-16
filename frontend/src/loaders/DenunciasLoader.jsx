@@ -3,14 +3,15 @@ import axios from "axios";
 export async function DenunciasLoader() {
   try {
     const response = await axios.get(`/api/denuncias`);
+    const denuncias = Array.isArray(response.data) ? response.data : [];
     return {
-      denuncias: response.data,
+      denuncias,
       error: null 
     };
   } catch (error) {
     console.log(error);
     return { 
-      denuncias: null, 
+      denuncias: [], 
       error: "Nenhuma denúncia encontrada."
     };
   } 

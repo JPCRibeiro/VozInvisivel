@@ -6,26 +6,32 @@ export default function DenunciasPage() {
   return (
     <section>
       <h3>Denúncias</h3>
-      {error ? (
+      {error || (denuncias.length === 0) ? (
         <div className="min-h-[300px] flex justify-center items-center">
-          <p className="text-gray-500 text-center text-[18px]">{error}</p>
+          <p className="text-gray-500 text-center text-[18px]">
+            {error || "Nenhuma denúncia encontrada."}
+          </p>
         </div>
       ) : (
         <div className="topic-container">
-        {denuncias.length > 0 && (
           <ul className="flex flex-col gap-4">
             {denuncias.map((denuncia) => (
-              <Link to={`/denuncias/${denuncia._id}`} key={denuncia._id} className="p-4 flex flex-col gap-2 shadow-md rounded-lg border border-gray-200">
+              <Link
+                to={`/denuncias/${denuncia._id}`}
+                key={denuncia._id}
+                className="p-4 flex flex-col gap-2 shadow-md rounded-lg border border-gray-200"
+              >
                 <div>
                   <h4 className="font-[700] text-[20px]">{denuncia.empresa}</h4>
-                  <p className="text-gray-600">{denuncia.cidade}, {denuncia.estado}</p>
+                  <p className="text-gray-600">
+                    {denuncia.cidade}, {denuncia.estado}
+                  </p>
                 </div>
                 <p className="line-clamp-2 max-sm:line-clamp-3">{denuncia.detalhes}</p>
               </Link>
             ))}
           </ul>
-        )}
-      </div>
+        </div>
       )}
     </section>
   );
