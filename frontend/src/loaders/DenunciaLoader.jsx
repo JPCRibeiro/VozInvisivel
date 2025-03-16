@@ -4,7 +4,7 @@ export async function DenunciaLoader({ params }) {
   const { id } = params;
 
   try {
-    const response = await axios.get(`/api/denuncias/${id}`);
+    const response = await axios.get(`http://localhost:3000/api/denuncias/${id}`);
     return {
       denuncia: response.data,
       error: null 
