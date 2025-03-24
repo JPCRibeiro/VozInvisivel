@@ -6,10 +6,10 @@ export default function DenunciasPage() {
   return (
     <section>
       <h3>Denúncias</h3>
-      {error || (denuncias.length === 0) ? (
+      {error ? (
         <div className="min-h-[300px] flex justify-center items-center">
-          <p className="text-gray-500 text-center text-[18px]">
-            {error || "Nenhuma denúncia encontrada."}
+          <p className="text-gray-500 text-center text-[20px] font-[500]">
+            {error}
           </p>
         </div>
       ) : (

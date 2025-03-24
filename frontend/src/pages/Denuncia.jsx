@@ -17,9 +17,9 @@ export default function DenunciaPage() {
   return (
     <section>
       <h3>Denúncia</h3>
-      {error || !denuncia ? (
+      {error ? (
         <div className="min-h-[300px] flex justify-center items-center">
-          <p className="text-gray-500 text-center text-[18px]">{error}</p>
+          <p className="text-gray-500 text-center text-[20px] font-[500]">{error}</p>
         </div>
       ) : (
         <div className="topic-container">
