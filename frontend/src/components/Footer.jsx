@@ -1,4 +1,4 @@
-import qrCodeUrl from "../assets/frame.svg" 
+import qrCodeUrl from "../assets/qr-code.svg" 
 import devUrl from "../assets/jpcr.svg" 
 
 export default function Footer() {
