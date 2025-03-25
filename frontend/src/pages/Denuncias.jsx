@@ -3,6 +3,9 @@ import { Link, useLoaderData } from "react-router-dom";
 export default function DenunciasPage() {
   const { denuncias, error } = useLoaderData();
 
+  console.log("Denuncias:", denuncias); 
+  console.log("Erro:", error);
+
   return (
     <section>
       <h3>Denúncias</h3>
