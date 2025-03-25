@@ -2,7 +2,7 @@ import axios from "axios";
 
 export async function DenunciasLoader() {
   try {
-    const response = await axios.get(`https://api.vozinvisivel.com.br/api/denuncias`);
+    const response = await axios.get(`/api/denuncias`);
     if (!response.ok) {
       throw new Error("Erro ao buscar denúncias");
     } else {
