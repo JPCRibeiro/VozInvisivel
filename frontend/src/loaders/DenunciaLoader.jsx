@@ -5,11 +5,12 @@ export async function DenunciaLoader({ params }) {
 
   try {
     const response = await axios.get(`/api/denuncias/${id}`);
-    if (!response.ok) {
-      throw new Error("Erro ao buscar denúncia")
+    
+    if (response.status !== 200) {
+      throw new Error("Erro ao buscar denúncia");
     } else {
       return {
-        denuncia: response.data, 
+        denuncia: response.data,
         error: null
       };
     }
