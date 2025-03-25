@@ -4,7 +4,7 @@ export async function DenunciaLoader({ params }) {
   const { id } = params;
 
   try {
-    const response = await axios.get(`/api/denuncias/${id}`);
+    const response = await axios.get(`https://api2.vozinvisivel.com.br/api/denuncias/${id}`);
     
     if (response.status !== 200) {
       throw new Error("Erro ao buscar denúncia");

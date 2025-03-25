@@ -42,7 +42,7 @@ export default function FormPage() {
 
     try {
       await validationSchema.validate(formData, { abortEarly: false });
-      await axios.post("/api/denuncias", formData);
+      await axios.post("https://api2.vozinvisivel.com.br/api/denuncias", formData);
 
       window.scrollTo({ top: 0 });
       setIsLoading(true);
